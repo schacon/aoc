@@ -16,14 +16,16 @@ def check_safe(levels)
     return 0 # unsafe
   end
 
+  if (first_level - last_level).abs > 3
+    return 0
+  end
+
   # remaining levels all need to be trend
   levels.each do |level|
     if (trend == :down) && ((last_level <= level) || ((last_level - level) > 3))
-      puts "X down: #{last_level} #{level}"
       return 0 # unsafe
     end
     if (trend == :up) && ((last_level >= level) || ((level - last_level) > 3))
-      puts "X up: #{last_level} #{level}"
       return 0 # unsafe
     end
     last_level = level
@@ -34,9 +36,7 @@ end
 safe = 0
 total = 0
 File.open('input_final.txt').each do |line|
-  puts line
   safe += check_safe(line)
-  total += 1
 end
-puts safe
-puts total
+puts "safe: #{safe}"
+puts "total: #{total}"
