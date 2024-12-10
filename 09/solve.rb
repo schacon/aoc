@@ -108,7 +108,7 @@ def pack_disk_full
       end
       index += 1
     end
-    puts file_id if file_id % 10 == 0
+    puts file_id if file_id % 1000 == 0
   end
 
 end
