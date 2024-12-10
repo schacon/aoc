@@ -84,14 +84,7 @@ def find_paths
           AND INSTR(r.path, ',' || e.node_to_id || ',') = 0
     )
 
-    SELECT SUM(count_per_start) AS total_count
-    FROM (
-        SELECT start_node, COUNT(DISTINCT node_id) AS count_per_start
-        FROM reach_nodes
-        WHERE depth = 9
-        and node_value = 9
-        GROUP BY start_node
-    ) AS counts;
+    SELECT count(*) from reach_nodes where node_value = 9 and depth = 9;
   SQL
   e.first.first
 end
@@ -99,6 +92,6 @@ end
 $db = SQLite3::Database.new 'input_final.db'
 puts buffer = File.read('input_final.txt')
 
-create_db
-read_nodes(buffer)
+#create_db
+#read_nodes(buffer)
 puts find_paths
