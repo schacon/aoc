@@ -90,7 +90,7 @@ def find_paths
 end
 
 $db = SQLite3::Database.new 'input_final.db'
-puts buffer = File.read('input_final.txt')
+#buffer = File.read('input_final.txt')
 
 #create_db
 #read_nodes(buffer)
